@@ -14,6 +14,7 @@
 	tail = "Tail"
 	tail_animation = 'icons/mob/species/tajaran/tail.dmi'
 	selectable_tails = list("Tail", "Hakh'jar Tail")
+	hud_type = /datum/hud_data/tail_accessories
 	unarmed_types = list(
 		/datum/unarmed_attack/stomp,
 		/datum/unarmed_attack/kick,

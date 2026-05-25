@@ -433,10 +433,6 @@
 
 /mob/living/carbon/human/proc/set_tail_style(var/new_style)
 	tail_style = new_style
-	if(tail_style)
-		add_verb(src, /mob/living/carbon/human/proc/open_tail_storage)
-	else
-		remove_verb(src, /mob/living/carbon/human/proc/open_tail_storage)
 
 /mob/living/carbon/human/proc/get_tail_accessory()
 	var/obj/item/organ/external/groin/G = organs_by_name[BP_GROIN]

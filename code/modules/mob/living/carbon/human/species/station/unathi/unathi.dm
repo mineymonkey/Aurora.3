@@ -16,6 +16,7 @@
 	tail = "Tail"
 	tail_animation = 'icons/mob/species/unathi/tail.dmi'
 	selectable_tails = list("Tail", "Damaged Tail", "Stubby Tail")
+	hud_type = /datum/hud_data/tail_accessories
 	unarmed_types = list(
 		/datum/unarmed_attack/stomp,
 		/datum/unarmed_attack/kick,

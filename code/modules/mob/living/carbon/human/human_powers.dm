@@ -1288,19 +1288,15 @@
 		GLOB.intent_listener -= src
 
 /mob/living/carbon/human/proc/open_tail_storage()
-	set name = "Tail Accessories"
-	set desc = "Opens the tail accessory slot."
-	set category = "Abilities"
-
 	var/obj/item/organ/external/groin/G = organs_by_name[BP_GROIN]
 	if(!G)
-		to_chat(usr, SPAN_WARNING("You have no tail!"))
+		to_chat(src, SPAN_WARNING("You have no tail!"))
 		return
 	if(!G.tail_storage)
-		to_chat(usr, SPAN_WARNING("Your tail storage is missing!"))
+		to_chat(src, SPAN_WARNING("Your tail storage is missing!"))
 		return
 
-	G.tail_storage.open(usr)
+	G.tail_storage.open(src)
 
 //Hivenet Admin
 /mob/living/carbon/human/proc/hivenet_transmit()

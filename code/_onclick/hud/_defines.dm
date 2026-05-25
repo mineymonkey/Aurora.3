@@ -118,6 +118,7 @@
 
 #define ui_gloves "WEST:6,SOUTH+1:7"
 #define ui_pants "WEST+1:8,SOUTH+1:7"
+#define ui_tail_accessory "WEST+2:10,SOUTH+3:11"
 // "WEST+2:10,SOUTH+1:7"
 
 #define ui_wrists "WEST:6,SOUTH+2:9"

@@ -97,6 +97,68 @@
 	color = set_color
 	color_changed = FALSE
 
+/atom/movable/screen/inventory/tail_accessory
+	name = "tail accessories"
+	icon_state = "belt"
+
+/atom/movable/screen/inventory/tail_accessory/Click()
+	if(!usr.canClick())
+		return TRUE
+
+	if(use_check_and_message(usr, USE_ALLOW_NON_ADJACENT|USE_ALLOW_NON_ADV_TOOL_USR))
+		return TRUE
+
+	if(!ishuman(usr))
+		return TRUE
+
+	var/mob/living/carbon/human/H = usr
+	var/obj/item/organ/external/groin/G = H.organs_by_name[BP_GROIN]
+
+	if(!istype(G) || !G.tail_storage)
+		to_chat(H, SPAN_WARNING("You have no tail accessories slot."))
+		return TRUE
+
+	var/obj/item/I = H.get_active_hand()
+	if(I)
+		if(!istype(I, /obj/item/clothing/tail_accessory))
+			to_chat(H, SPAN_WARNING("\The [I] is not a tail accessory."))
+			return TRUE
+
+		var/obj/item/clothing/tail_accessory/TA = I
+		if(!TA.compatible_with_human(H))
+			return TRUE
+
+		if(!G.tail_storage.can_be_inserted(TA))
+			return TRUE
+
+		H.drop_from_inventory(TA, G.tail_storage)
+		G.tail_storage.handle_item_insertion(TA, FALSE, H)
+	else
+		G.tail_storage.open(H)
+
+	return TRUE
+
+/atom/movable/screen/inventory/tail_accessory/proc/update_tail_icon(mob/living/carbon/human/H)
+	cut_overlays()
+
+	icon_state = "belt"
+
+	if(!istype(H))
+		return
+
+	var/obj/item/organ/external/groin/G = H.organs_by_name[BP_GROIN]
+	if(!istype(G) || !G.tail_storage)
+		return
+
+	var/obj/item/clothing/tail_accessory/TA = locate(/obj/item/clothing/tail_accessory) in G.tail_storage.contents
+	if(!TA)
+		return
+
+	var/mutable_appearance/MA = mutable_appearance(TA.icon, TA.icon_state)
+	MA.pixel_x = TA.pixel_x
+	MA.pixel_y = TA.pixel_y
+	add_overlay(MA)
+
 /atom/movable/screen/close
 	name = "close"
 

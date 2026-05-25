@@ -60,7 +60,8 @@
 /datum/hud_data/New()
 	..()
 	for(var/slot in gear)
-		equip_slots |= gear[slot]["slot"]
+		if(gear[slot]["slot"])
+			equip_slots |= gear[slot]["slot"]
 
 	if(has_hands)
 		equip_slots |= slot_l_hand
@@ -77,6 +78,28 @@
 		equip_slots |= slot_in_belt
 
 	equip_slots |= slot_legcuffed
+
+/datum/hud_data/tail_accessories
+	gear = list(
+		"i_clothing" =   list("loc" = ui_iclothing, "name" = "uniform",      "slot" = slot_w_uniform, "state" = "center", "toggle" = 1),
+		"o_clothing" =   list("loc" = ui_oclothing, "name" = "suit",         "slot" = slot_wear_suit, "state" = "suit",   "toggle" = 1),
+		"mask" =         list("loc" = ui_mask,      "name" = "mask",         "slot" = slot_wear_mask, "state" = "mask",   "toggle" = 1),
+		"gloves" =       list("loc" = ui_gloves,    "name" = "gloves",       "slot" = slot_gloves,    "state" = "gloves", "toggle" = 1),
+		"eyes" =         list("loc" = ui_glasses,   "name" = "glasses",      "slot" = slot_glasses,   "state" = "glasses","toggle" = 1),
+		"l_ear" =        list("loc" = ui_l_ear,     "name" = "left ear",     "slot" = slot_l_ear,     "state" = "l_ear",  "toggle" = 1),
+		"r_ear" =        list("loc" = ui_r_ear,     "name" = "right ear",    "slot" = slot_r_ear,     "state" = "r_ear",  "toggle" = 1),
+		"head" =         list("loc" = ui_head,      "name" = "hat",          "slot" = slot_head,      "state" = "hair",   "toggle" = 1),
+		"shoes" =        list("loc" = ui_shoes,     "name" = "shoes",        "slot" = slot_shoes,     "state" = "shoes",  "toggle" = 1),
+		"wrists" =       list("loc" = ui_wrists,    "name" = "wrists",       "slot" = slot_wrists,    "state" = "wrists", "toggle" = 1),
+		"tail" =         list("loc" = ui_tail_accessory, "name" = "tail accessories", "state" = "belt", "toggle" = 1, "slot_type" = /atom/movable/screen/inventory/tail_accessory),
+		"pants" =        list("loc" = ui_pants,     "name" = "pants",        "slot" = slot_pants,     "state" = "pants",  "toggle" = 1),
+		"suit storage" = list("loc" = ui_sstore1,   "name" = "suit storage", "slot" = slot_s_store,   "state" = "suitstore"),
+		"back" =         list("loc" = ui_back,      "name" = "back",         "slot" = slot_back,      "state" = "back", "slot_type" = /atom/movable/screen/inventory/back),
+		"id" =           list("loc" = ui_id,        "name" = "id",           "slot" = slot_wear_id,   "state" = "id"),
+		"storage1" =     list("loc" = ui_storage1,  "name" = "left pocket",  "slot" = slot_l_store,   "state" = "pocket"),
+		"storage2" =     list("loc" = ui_storage2,  "name" = "right pocket", "slot" = slot_r_store,   "state" = "pocket"),
+		"belt" =         list("loc" = ui_belt,      "name" = "belt",         "slot" = slot_belt,      "state" = "belt")
+	)
 
 /datum/hud_data/diona
 	has_hydration = FALSE
