@@ -682,6 +682,20 @@ SUBSYSTEM_DEF(jobs)
 
 			// we want to handle spawning accessories after all the other clothing items have been spawned in
 			var/list/spawn_data = G.get_spawn_item_data(H, metadata, H)
+			if(ispath(spawn_data[1], /obj/item/clothing/tail_accessory))
+				var/obj/item/organ/external/groin/groin = H.organs_by_name[BP_GROIN]
+				if(istype(groin) && groin.tail_storage && !length(groin.tail_storage.contents))
+					var/obj/item/clothing/tail_accessory/TA = G.spawn_item(null, metadata, H)
+					if(TA && groin.tail_storage.can_be_inserted(TA) && groin.tail_storage.handle_item_insertion(TA, FALSE, H))
+						to_chat(H, SPAN_NOTICE("Equipping you with [thing]!"))
+						log_loadout("EC/([H]): Equipped [TA] successfully.")
+						continue
+					qdel(TA)
+				if(storage)
+					storage += thing
+					log_loadout("EC/([H]): Unable to equip [thing]; sending to storage.")
+				continue
+
 			if(ispath(spawn_data[1], /obj/item/clothing/accessory))
 				leftovers += thing
 				continue

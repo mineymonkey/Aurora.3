@@ -204,6 +204,8 @@ GLOBAL_LIST(global_huds)
 
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
+		for(var/atom/movable/screen/inventory/tail_accessory/tail_slot in other)
+			tail_slot.update_tail_icon(H)
 		for(var/gear_slot in H.species.hud.gear)
 			var/list/hud_data = H.species.hud.gear[gear_slot]
 			if(inventory_shown && hud_shown)

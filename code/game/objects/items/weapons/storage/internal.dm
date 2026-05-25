@@ -185,7 +185,15 @@
 /obj/item/storage/internal/tail/handle_item_insertion(obj/item/W, prevent_warning, mob/living/carbon/human/user)
 	. = ..()
 	if(.)
-		user.update_tail_showing()
+		var/mob/living/carbon/human/H = user
+		if(!istype(H))
+			var/obj/item/organ/external/E = loc
+			if(istype(E))
+				H = E.owner
+		if(!istype(H))
+			return
+		H.update_tail_showing()
+		H.hud_used?.hidden_inventory_update()
 
 /obj/item/storage/internal/tail/remove_from_storage(obj/item/W, atom/new_location)
 	. = ..()
@@ -197,3 +205,4 @@
 		if(!istype(H))
 			return
 		H.update_tail_showing()
+		H.hud_used?.hidden_inventory_update()

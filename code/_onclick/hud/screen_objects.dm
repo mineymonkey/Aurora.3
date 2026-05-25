@@ -139,7 +139,7 @@
 	return TRUE
 
 /atom/movable/screen/inventory/tail_accessory/proc/update_tail_icon(mob/living/carbon/human/H)
-	cut_overlays()
+	ClearOverlays()
 
 	icon_state = "belt"
 
@@ -157,7 +157,7 @@
 	var/mutable_appearance/MA = mutable_appearance(TA.icon, TA.icon_state)
 	MA.pixel_x = TA.pixel_x
 	MA.pixel_y = TA.pixel_y
-	add_overlay(MA)
+	AddOverlays(MA)
 
 /atom/movable/screen/close
 	name = "close"

@@ -16,7 +16,8 @@
 	tail = "Tail"
 	tail_animation = 'icons/mob/species/unathi/tail.dmi'
 	selectable_tails = list("Tail", "Damaged Tail", "Stubby Tail")
-	hud_type = /datum/hud_data/tail_accessories
+	//*hud_type = /datum/hud_data/tail_accessories
+	//*commented out the above for now as there are no actual items for unathi tails at the moment, but everything is set up as a framework to allow items to be placed there once items are coded and sprited.
 	unarmed_types = list(
 		/datum/unarmed_attack/stomp,
 		/datum/unarmed_attack/kick,
